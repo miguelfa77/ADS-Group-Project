@@ -1,24 +1,12 @@
 import time
 import hashlib
 import re
-
-#Introduction function introduces the user to the app.
-def Introduction(loggedIn):
-  print("Welcome to Noted - The marketplace for your notes at IE University, BBADBA, Year 2.")
-  time.sleep(1)
-  print("Please sign up/log in (For your security passwords will be encrypted)")
-  time.sleep(1)
-  #Login Process. Loops until logged in.
-  while loggedIn != 1:
-    UserIdentification()
-  #Asks the user if it wants to upload or find notes
-  UserPick = str(input("\nEnter U to upload notes or F to find notes or Q to Quit:")).upper().strip()
-  return UserPick
+import sys
 
 #Sign up/Login Process
 def UserIdentification():
-    loggedIn = 0
-    while loggedIn != 1:
+    #repeat sign up and login until login or exit. If login, break. If exit, exit the whole program.
+    while True:
         print("********** Login System **********")
         print("1.Signup")
         print("2.Login")
@@ -27,19 +15,16 @@ def UserIdentification():
         if ch == 1:
             SignUp()
         elif ch == 2:
-            LogIn(loggedIn)
-            return loggedIn
-        elif ch == 3:
+            LogIn()
             break
-        else:
-            print("Wrong Choice!")
-    return loggedIn
+        elif ch == 3:
+            sys.exit()
 
 #Sign Up Process (Encryption)
 def SignUp():
     #input email, password, confirmationPassword
     email = input("Enter email address (Use IE address): ")
-    EmailVerification()
+    EmailVerification(email)
     password = input("Enter password: ")
     confPassword = input("Confirm password: ")
     #if passwords match, encode() from str to byte acceptable for hashing
@@ -58,7 +43,7 @@ def SignUp():
         print("Password is not same as above! \n")
 
 #Login Process
-def LogIn(loggedIn):
+def LogIn():
     #prompt for email/password, encode() from byt to str and unhash into authenUnhash
     email = input("Enter email: ")
     password = input("Enter password: ")
@@ -72,9 +57,10 @@ def LogIn(loggedIn):
         if email == storedEmail and HashedPswrd == storedPassword:
             print("Logged in to Noted Successfully!")
             time.sleep(3)
-            loggedIn == 1
         else:
             print("Login failed! \n")
+            time.sleep(5)
+            sys.exit()
 
 def EmailVerification(email):
   regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -82,30 +68,24 @@ def EmailVerification(email):
   if re.fullmatch(regex, email):
     if ie in email:
       print("Email Valid\n")
-      return True
     else:
-      print("Email address valid but not from IE. Use IE address\n")
-      email = input("Enter email address (Use IE address): ")
+      print("Email address valid but not from IE. Use IE address next time\n")
   else:
-    if email == "Q" or email == "q":
-      return False
-    else:
-      print("Invalid Email\n")
-      email = input("Enter email address (Use IE address): ")
+    print("Invalid Email\n")
+
 
 #notesFinder function (takes availableNotes as input) returns title and link
 def NotesFinder(availableNotes):
   print("\nHere are the available courses: \n")
   #Creates availableCourses list 
-  availableCourses = []
+  availableCourses = [[key for key in availableNotes.keys()]]
   #append the keys to the availableCourses list
-  for key in availableNotes.keys():
-    availableCourses.append(availableNotes[key])
   print(availableCourses)
   print()
 
   #User inputs chosenCourse.
-  chosenCourse = input("Choose a course from the list: ").title().strip()
+  chosenCourse = input("Choose a course from the list: ")
+  chosenCourse.title().strip()
   while chosenCourse not in availableCourses:
     print("Sorry, course not available in our database. \nTry again!")
     time.sleep(0.5)
@@ -116,36 +96,16 @@ def NotesFinder(availableNotes):
     print(f"Congratulations!\nClick on the link below to access your notes!\n{availableNotes[chosenCourse][chosenChapter-1]}")
     
     #notesUploader function to upload notes link.
-def NotesUploader():
-    Maths = {['Chapter1',
-              'https://docs.google.com/document/d/1yhn4FexW91B4uUPILZaIinKlN8kviWodLRo7t6Mq_ig/edit?usp=sharing']}
+def NotesUploader(availableCourses, AvailableNotes):
+    print()
+    print(availableCourses)
+    print()
+    SubjectInput = input("What subject are your notes from?:")
+    NotesTitle= input("What is the title of your notes?:")
+    NotesLink = input("Upload here the link of your notes:")
+    availableCourses[SubjectInput].append(NotesTitle,NotesLink)
 
-    Economics = {["Economics Chapter 1", "link"]}
-
-    German = {["German Chapter 1", "link"], ["German Chapter 2", "link"], ["German Chapter 3", "link"]}
-
-    Algorithms = {["Algorithms Chapter 1", "link"], ["Algorithms Chapter 1", "link"], ["Algorithms Chapter 1", "link"]}
-
-    subject = input("What subject are your notes from? ")
-    title = input("What chapter are your notes on? ")
-    link = input("Upload here the link of your notes: ")
-
-    if subject == 'Maths':
-        Maths[title] = link
-        print("Thanks for sharing your notes!")
-    if subject == 'Economics':
-        Economics[title] = link
-        print("Thanks for sharing your notes!")
-    if subject == 'German':
-        German[title] = link
-        print("Thanks for sharing your notes!")
-    if subject == 'Algorithms':
-        Algorithms[title] = link
-        print("Thanks for sharing your notes!")
-    else:
-        print("Sorry, the course you have selected is not included in our app")
-
-NotesUploader()
+    return AvailableNotes
 
 
 #PreExistingNotes stores default notes
@@ -172,32 +132,34 @@ def PreExistingNotes():
     availableNotes["Building Powerful Relationships"] = [["Building Powerful Relationships Chapter 1", "link"], 
                                                         ["Building Powerful Relationships Chapter 2", "link"], 
                                                         ["Building Powerful Relationships Chapter 3", "link"]]
-    return availableNotes
+    return availableNotes        
 
-#UserOption is the logic. It takes the step the user selected. Find, Upload or Quit
-def UserOption(UserPick, availableNotes):     
+#This main function calls the rest of the functions
+def main():
+    print("Welcome to Noted - The marketplace for your notes at IE University, BBADBA, Year 2.")
+    time.sleep(1)
+    print("Please sign up/log in (For your security passwords will be encrypted)")
+    time.sleep(1)
+    #Check Credentials
+    UserIdentification()
+    availableNotes = PreExistingNotes()
+    #Asks the user if it wants to upload or find notes
+    UserPick = input("\nEnter U to upload notes or F to find notes or Q to Quit:")
+    UserPick.upper().strip()
+    
+   
     while UserPick != "U" and UserPick != "F":
         if UserPick == "Q":
             print("Exiting Program...")
-            time.sleep(0.5)
+            time.sleep(3)
             break
         else:
             print("Wrong Letter. Restarting Program.\nLoading...")
             time.sleep(5)
-            Introduction()
     if UserPick == "U":
         NotesUploader(availableNotes)
     elif UserPick == "F":
         NotesFinder(availableNotes)
-
-        
-
-#This main function calls the rest of the functions
-def main():
-    Introduction()
-    availableNotes = PreExistingNotes()
-    UserOption(availableNotes)
    
-main() 
-
+main()  
         
