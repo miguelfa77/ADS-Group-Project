@@ -116,16 +116,36 @@ def NotesFinder(availableNotes):
     print(f"Congratulations!\nClick on the link below to access your notes!\n{availableNotes[chosenCourse][chosenChapter-1]}")
     
     #notesUploader function to upload notes link.
-def NotesUploader(availableCourses, AvailableNotes):
-    print()
-    print(availableCourses)
-    print()
-    SubjectInput = input("What subject are your notes from?:")
-    NotesTitle= input("What is the title of your notes?:")
-    NotesLink = input("Upload here the link of your notes:")
-    availableCourses[SubjectInput].append(NotesTitle,NotesLink)
+def NotesUploader():
+    Maths = {['Chapter1',
+              'https://docs.google.com/document/d/1yhn4FexW91B4uUPILZaIinKlN8kviWodLRo7t6Mq_ig/edit?usp=sharing']}
 
-    return AvailableNotes
+    Economics = {["Economics Chapter 1", "link"]}
+
+    German = {["German Chapter 1", "link"], ["German Chapter 2", "link"], ["German Chapter 3", "link"]}
+
+    Algorithms = {["Algorithms Chapter 1", "link"], ["Algorithms Chapter 1", "link"], ["Algorithms Chapter 1", "link"]}
+
+    subject = input("What subject are your notes from? ")
+    title = input("What chapter are your notes on? ")
+    link = input("Upload here the link of your notes: ")
+
+    if subject == 'Maths':
+        Maths[title] = link
+        print("Thanks for sharing your notes!")
+    if subject == 'Economics':
+        Economics[title] = link
+        print("Thanks for sharing your notes!")
+    if subject == 'German':
+        German[title] = link
+        print("Thanks for sharing your notes!")
+    if subject == 'Algorithms':
+        Algorithms[title] = link
+        print("Thanks for sharing your notes!")
+    else:
+        print("Sorry, the course you have selected is not included in our app")
+
+NotesUploader()
 
 
 #PreExistingNotes stores default notes
