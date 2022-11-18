@@ -78,7 +78,7 @@ def EmailVerification(email):
 def NotesFinder(availableNotes):
   print("\nHere are the available courses: \n")
   #Creates availableCourses list 
-  availableCourses = [[key for key in availableNotes.keys()]]
+  availableCourses = [key for key in availableNotes.keys()]
   #append the keys to the availableCourses list
   print(availableCourses)
   print()
