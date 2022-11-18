@@ -1,14 +1,99 @@
-
 import time
+import hashlib
+import re
 
 #Introduction function introduces the user to the app.
-def Introduction():
+def Introduction(loggedIn):
   print("Welcome to Noted - The marketplace for your notes at IE University, BBADBA, Year 2.")
+  time.sleep(1)
+  print("Please sign up/log in (For your security passwords will be encrypted)")
+  time.sleep(1)
+  #Login Process. Loops until logged in.
+  while loggedIn != 1:
+    UserIdentification()
   #Asks the user if it wants to upload or find notes
   UserPick = str(input("\nEnter U to upload notes or F to find notes or Q to Quit:")).upper().strip()
   return UserPick
 
-#notesFinder function (takes availableNotes as input) returns NotesTitle and NotesLink
+#Sign up/Login Process
+def UserIdentification():
+    loggedIn = 0
+    while loggedIn != 1:
+        print("********** Login System **********")
+        print("1.Signup")
+        print("2.Login")
+        print("3.Exit")
+        ch = int(input("Enter your choice: "))
+        if ch == 1:
+            SignUp()
+        elif ch == 2:
+            LogIn(loggedIn)
+            return loggedIn
+        elif ch == 3:
+            break
+        else:
+            print("Wrong Choice!")
+    return loggedIn
+
+#Sign Up Process (Encryption)
+def SignUp():
+    #input email, password, confirmationPassword
+    email = input("Enter email address (Use IE address): ")
+    EmailVerification()
+    password = input("Enter password: ")
+    confPassword = input("Confirm password: ")
+    #if passwords match, encode() from str to byte acceptable for hashing
+    if confPassword == password:
+        encoded = password.encode()
+        #hash to hexidecimal notation and create HashedPassword
+        HashedPassword = hashlib.blake2b(encoded).hexdigest()
+        #open file with writing option as f, store email and HashedPassword
+        with open("NotedCredentials.txt", "w") as f:
+            f.write(email + "\n")
+            f.write(HashedPassword)
+            f.close()
+            print("You have successfully registered your Noted account!\n")
+            time.sleep(3)
+    else:
+        print("Password is not same as above! \n")
+
+#Login Process
+def LogIn(loggedIn):
+    #prompt for email/password, encode() from byt to str and unhash into authenUnhash
+    email = input("Enter email: ")
+    password = input("Enter password: ")
+    encodedPswrd = password.encode()
+    HashedPswrd = hashlib.blake2b(encodedPswrd).hexdigest()
+    #open file in reading, store in StoredEmail and storedPassword var. close file
+    with open("NotedCredentials.txt", "r") as f:
+        storedEmail, storedPassword = f.read().split("\n")
+        f.close()
+        #if input email is same as stored and unhash is same as storedPassword, login.
+        if email == storedEmail and HashedPswrd == storedPassword:
+            print("Logged in to Noted Successfully!")
+            time.sleep(3)
+            loggedIn == 1
+        else:
+            print("Login failed! \n")
+
+def EmailVerification(email):
+  regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+  ie = "ie"
+  if re.fullmatch(regex, email):
+    if ie in email:
+      print("Email Valid\n")
+      return True
+    else:
+      print("Email address valid but not from IE. Use IE address\n")
+      email = input("Enter email address (Use IE address): ")
+  else:
+    if email == "Q" or email == "q":
+      return False
+    else:
+      print("Invalid Email\n")
+      email = input("Enter email address (Use IE address): ")
+
+#notesFinder function (takes availableNotes as input) returns title and link
 def NotesFinder(availableNotes):
   print("\nHere are the available courses: \n")
   #Creates availableCourses list 
@@ -93,4 +178,6 @@ def main():
     availableNotes = PreExistingNotes()
     UserOption(availableNotes)
    
-main()    
+main() 
+
+        
