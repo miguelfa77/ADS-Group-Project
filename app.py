@@ -9,7 +9,7 @@ def UserIdentification():
     while True:
         print("********** Login System **********")
         print("1.Signup")
-        print("2.Login")
+        print("2.Login (If you already have an account)")
         print("3.Exit")
         ch = int(input("Enter your choice: "))
         if ch == 1:
