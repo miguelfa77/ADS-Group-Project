@@ -163,3 +163,38 @@ def main():
    
 main()  
         
+
+    
+    
+    
+    
+    
+ def NotesUploader(availableCourses):
+    print()
+    print(availableCourses)
+    print()
+
+    subject = input("¿What subject are your notes from?:")
+    Titleofthenotes = input("¿What is the title of your notes?:")
+    Linkofthenotes = input("Upload here the link of your notes:")
+
+    if subject=="Mathematics" or "mathematics":
+        availableCourses[subject]+= [[Titleofthenotes,Linkofthenotes]]
+        print(availableCourses)
+    elif subject =="Marketing Management" or "marketing management":
+        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
+        print(availableCourses)
+    elif subject =="Probability and Statistics" or "probability and statistics":
+        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
+        print(availableCourses)
+    elif subject == "Algorithms and Data Structures" or "algorithms and data structures":
+        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
+        print(availableCourses)
+    elif subject=="Programming" or "programming":
+        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
+        print(availableCourses)
+    elif subject=="Building Powerful Relationships" or "building powerful relationships":
+        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
+        print(availableCourses)
+    else:
+        print("Sorry, but you might have done a typing error")
