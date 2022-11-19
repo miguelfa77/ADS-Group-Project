@@ -92,8 +92,9 @@ def NotesFinder(availableNotes):
     chosenCourse.title().strip()
     while chosenCourse != "":
          if chosenCourse in availableCourses:
-                 notes = availableNotes.get(chosenCourse)
-                 print(notes)
+                 Notes = availableNotes.get(chosenCourse)
+                 print()
+                 print(Notes)
                  break
          else:
              print("Sorry, course not available in our database. \nTry again!")
@@ -101,66 +102,92 @@ def NotesFinder(availableNotes):
              chosenCourse = input("Choose your course: ").title().strip()
 
 
-
-        # notesUploader function to upload notes link.
-
-
+# notesUploader function to upload notes link.
 def NotesUploader(availableCourses, availableNotes):
     print()
     print(availableCourses)
     print()
 
-    subject = input("¿What subject are your notes from?:")
-    Titleofthenotes = input("¿What is the title of your notes?:")
-    Linkofthenotes = input("Upload here the link of your notes:")
+    try: 
+        NotesSubject = input("¿What subject are your notes from?:")
+        print()
+        NotesTitle = input("¿What is the topic of your notes?:")
+        print()
+        NotesChapter = input("What is the chapter of your notes? <insert 'Chapter' and chapter number> ")
+        print()
+        NotesLink = input("Upload here the link of your notes:")
 
-    if subject=="Mathematics" or "mathematics":
-        availableNotes[subject] += [[Titleofthenotes,Linkofthenotes]]
-        print(availableNotes)
-    elif subject =="Marketing Management" or "marketing management":
-        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableNotes)
-    elif subject =="Probability and Statistics" or "probability and statistics":
-        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableNotes)
-    elif subject == "Algorithms and Data Structures" or "algorithms and data structures":
-        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableNotes)
-    elif subject=="Programming" or "programming":
-        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableNotes)
-    elif subject=="Building Powerful Relationships" or "building powerful relationships":
-        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableNotes)
-    else:
-        print("Sorry, but you might have done a typing error")
+        while NotesSubject in availableCourses:
+            if NotesSubject=="Mathematics" or "mathematics":
+              availableNotes[NotesSubject] += [NotesTitle, NotesChapter, NotesLink]
+            elif NotesSubject =="Marketing Management" or "marketing management":
+                availableNotes[NotesSubject] += [NotesTitle, NotesChapter, NotesLink]
+            elif NotesSubject =="Probability and Statistics" or "probability and statistics":
+                availableNotes[NotesSubject] += [NotesTitle, NotesChapter, NotesLink]
+            elif NotesSubject == "Algorithms and Data Structures" or "algorithms and data structures":
+                availableCourses[NotesSubject] += [NotesTitle, NotesChapter, NotesLink]
+            elif NotesSubject=="Programming" or "programming":
+                availableNotes[NotesSubject] += [NotesTitle, NotesChapter, NotesLink]
+            elif NotesSubject=="Building Powerful Relationships" or "building powerful relationships":
+                availableNotes[NotesSubject] += [NotesTitle, NotesChapter, NotesLink]
+            elif NotesSubject == "Entrepeneurship & Innovation" or "entrepeneurship & innovation":
+                availableNotes[NotesSubject] += [NotesTitle, NotesChapter, NotesLink]
+            else:
+                print("Sorry, but you might have done a typing error")
+                NotesSubject = input("¿What subject are your notes from?:")
+                print()
+                NotesTitle = input("¿What is the topic of your notes?:")
+                print()
+                NotesChapter = input("What is the chapter of your notes? <insert 'Chapter' and chapter number> ")
+                print()
+                NotesLink = input("Upload here the link of your notes:")
 
+                return availableNotes
+            
+    except NotesSubject not in availableCourses:
+            print("Sorry, but you might have done a typing error")
+            NotesSubject = input("¿What subject are your notes from?:")
+            print()
+            NotesTitle = input("¿What is the topic of your notes?:")
+            print()
+            NotesChapter = input("What is the chapter of your notes? <insert 'Chapter' and chapter number> ")
+            print()
+            NotesLink = input("Upload here the link of your notes:")
 
 # PreExistingNotes stores default notes
 def PreExistingNotes():
     # creates availableNotes course: NotesTitle,NotesLink
     availableNotes = {}
 
-    availableNotes["Mathematics"] = [["Math Chapter 1",
-                                      "https://docs.google.com/document/d/1yhn4FexW91B4uUPILZaIinKlN8kviWodLRo7t6Mq_ig/edit?usp=sharing"],
-                                     ["Math Chapter 2", "link"],
-                                     ["Math Chapter 3", "link"]]
-    availableNotes["Marketing Management"] = [["Marketing Management Chapter 1", "link"],
-                                              ["Marketing Management Chapter 2", "link"],
-                                              ["Marketing Management Chapter 3", "link"]]
-    availableNotes["Probability and Statistics"] = [["Probability and Statistics Chapter 1", "link"],
-                                                    ["Probability and Statistics Chapter 2", "link"],
-                                                    ["Probability and Statistics Chapter 3", "link"]]
-    availableNotes["Algorithms and Data Structures"] = [["Algorithms and Data Structures Chapter 1", "link"],
-                                                        ["Algorithms and Data Structures Chapter 2", "link"],
-                                                        ["Algorithms and Data Structures Chapter 3", "link"]]
-    availableNotes["Programming"] = [["Programming Chapter 1", "link"],
-                                     ["Programming Chapter 2", "link"],
-                                     ["Programming Chapter 3", "link"]]
+    availableNotes["Mathematics"] = [["Systems", "Chapter 1"
+                                      "https://docs.google.com/document/d/12Ubhr_Qw6aduMykVtbFCFLA2O32Ea7GKoVDsgV6UxIk/edit?usp=sharing"],
+                                     ["Matrices", "Chapter 2", "https://docs.google.com/document/d/15ZSeOGDLVm8Hk2SmcJpTo9UfzhBzMs6D6fF3z_rlIA0/edit"],
+                                     ["Vector Spaces", "Chapter 3", "https://docs.google.com/document/d/1uWV-CGrSXkPSCxgyRNrwALwwYsq6wudeTDjH1kXQvjU/edit"]]
 
-    availableNotes["Building Powerful Relationships"] = [["Building Powerful Relationships Chapter 1", "link"],
-                                                         ["Building Powerful Relationships Chapter 2", "link"],
-                                                         ["Building Powerful Relationships Chapter 3", "link"]]
+    availableNotes["Marketing Management"] = [["Products and Services", "Chapter 1", "https://docs.google.com/document/d/1Qc6WegomqqfSwYfXYDbm1vW49R9NZhdDYhlZo3YupHs/edit?usp=sharing"],
+                                              ["New Product Development", "Chapter 2", "https://docs.google.com/document/d/1WQLcSCfxibARMOn_3pAqXLERRtgFY5SZB99c4AinynQ/edit?usp=sharing"],
+                                              ["Branding", "Chapter 3", "https://docs.google.com/document/d/1o8B3k4wHHSkmPj2US5JwdTDx8ojvxKwl_zjBNkmmUJs/edit?usp=sharing"]]
+
+    availableNotes["Probability and Statistics"] = [["Intro to Multivariate Statistical Analysis", "Chapter 1", "https://docs.google.com/document/d/1ZQhx4tAdSH6MXkJpAv7kF8MUgdlUtigxdZISMj26h7U/edit?usp=sharing"],
+                                                    ["Data Assessment & Evaluation", "Chapter 2", "https://docs.google.com/document/d/1D7Qwv-V5_IxhNbUMacHrRFVt9YK0R1MvIxnSdKmKbNE/edit?usp=sharing"],
+                                                    ["Principal Component Analysis & Cluster Analysis", "Chapter 3", "https://docs.google.com/document/d/1vmcHfTepUkzRaSMc2XJyiX2F9BAL7bfMy4Ie2wHFLS0/edit?usp=sharing"]]
+
+    availableNotes["Algorithms and Data Structures"] = [["Search Algorithms and Runtime", "Chapter 1", "https://docs.google.com/document/d/1FOHSX94IUOzNZOTHKXbh1_UWNOPGggIpDuHl-mk2n2c/edit?usp=sharing"],
+                                                        ["Arrays, Linked Lists, Selection Sort", "Chapter 2", "https://docs.google.com/document/d/1CjwUiTdTwAkIRgWVChepRSpYsn6vZs0OQD7UhVDRWqw/edit?usp=sharing"],
+                                                        ["Recursion", "Chapter 3", "https://docs.google.com/document/d/1Q_mljP1nIlDqOiOsI705-APOTynLBEfuHBb4OiQJkEk/edit?usp=sharing"]]
+
+    availableNotes["Programming"] = [["Graphical User Interfaces", "Chapter 1", "https://docs.google.com/document/d/1yor2mDXPRguValGf0yzSPeXm8S-rFfyBWn-Qv90plII/edit?usp=sharing"],
+                                     ["Definite Loops and Math Library", "Chapter 2", "https://docs.google.com/document/d/1YE9or8ywDPmi4lb8I7nNGCt8LDLZFgg7nx3iRhBK2Tk/edit?usp=sharing"],
+                                     ["Visualiaing Data with Pandas", "Chapter 3", "https://docs.google.com/document/d/1fe86PO-CoqiWopSMlFVX1o1dK_6Uv5JXCXIPH5CAY0o/edit?usp=sharing"]]
+
+    availableNotes["Building Powerful Relationships"] = [["7 Basic Communication Skills", "Chapter 1", "7 basic communication skills.docx"],
+                                                         ["Pathos, Ethos and Logos","Chapter 2", "https://www.ted.com/talks/danish_dhamani_how_i_overcame_my_fear_of_public_speaking"],
+                                                         ["How to do your own Ted Talk", "Chapter 3", "https://www.wix.com/wordsmatter/blog/2020/12/ethos-pathos-logos/"]]
+
+    availableNotes["Entrepeneurship & Innovation"] = [["Dynamics", "Chapter 1", "https://docs.google.com/document/d/1sCO9ZETyAv7-KcTT1FH4RJ-4MKLuRaIfRCR4LHCgVT4/edit?usp=sharing"],
+                                                         ["Entrepeneurial Mindset","Chapter 2", "https://docs.google.com/document/d/1qmJthzBIkogUv96gADBsKkCM-RXG7xDT2C3oi3-qb3Y/edit?usp=sharing"],
+                                                         ["How Do Ideas Emerge", "Chapter 3", "https://docs.google.com/document/d/1rkHMd6d56zUfmg7qer3G2Tq2G--uN7213GwArAJwt7U/edit?usp=sharing"]]
+    
     return availableNotes
 
 def repeat(availableCourses, availableNotes):
