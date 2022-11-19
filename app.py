@@ -90,20 +90,22 @@ def NotesFinder(availableNotes):
     # User inputs chosenCourse.
     chosenCourse = input("Choose a course from the list: ")
     chosenCourse.title().strip()
-    while chosenCourse not in availableCourses:
-        print("Sorry, course not available in our database. \nTry again!")
-        time.sleep(0.5)
-        chosenCourse = input("Choose your course: ").title().strip()
-    else:
-        chosenChapter = int(input("What chapter do you need? Chapter:"))
-        print()
-        print(
-            f"Congratulations!\nClick on the link below to access your notes!\n{availableNotes[chosenCourse][chosenChapter - 1]}")
+    while chosenCourse != "":
+         if chosenCourse in availableCourses:
+                 notes = availableNotes.get(chosenCourse)
+                 print(notes)
+                 break
+         else:
+             print("Sorry, course not available in our database. \nTry again!")
+             time.sleep(0.5)
+             chosenCourse = input("Choose your course: ").title().strip()
+
+
 
         # notesUploader function to upload notes link.
 
 
-def NotesUploader(availableCourses):
+def NotesUploader(availableCourses, availableNotes):
     print()
     print(availableCourses)
     print()
@@ -113,23 +115,23 @@ def NotesUploader(availableCourses):
     Linkofthenotes = input("Upload here the link of your notes:")
 
     if subject=="Mathematics" or "mathematics":
-        availableCourses[subject]+= [[Titleofthenotes,Linkofthenotes]]
-        print(availableCourses)
+        availableNotes[subject] += [[Titleofthenotes,Linkofthenotes]]
+        print(availableNotes)
     elif subject =="Marketing Management" or "marketing management":
-        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableCourses)
+        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
+        print(availableNotes)
     elif subject =="Probability and Statistics" or "probability and statistics":
-        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableCourses)
+        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
+        print(availableNotes)
     elif subject == "Algorithms and Data Structures" or "algorithms and data structures":
         availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableCourses)
+        print(availableNotes)
     elif subject=="Programming" or "programming":
-        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableCourses)
+        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
+        print(availableNotes)
     elif subject=="Building Powerful Relationships" or "building powerful relationships":
-        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
-        print(availableCourses)
+        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
+        print(availableNotes)
     else:
         print("Sorry, but you might have done a typing error")
 
@@ -161,7 +163,7 @@ def PreExistingNotes():
                                                          ["Building Powerful Relationships Chapter 3", "link"]]
     return availableNotes
 
-def repeat(availableNotes):
+def repeat(availableCourses, availableNotes):
     UserPick = input("\nEnter U to upload notes or F to find notes or Q to Quit:")
     UserPick.upper().strip()
 
@@ -173,12 +175,13 @@ def repeat(availableNotes):
         else:
             print("Wrong Letter. Restarting Program.\nLoading...")
             time.sleep(5)
+
     if UserPick == "U":
-        NotesUploader(availableNotes)
-        repeat(availableNotes)
+        NotesUploader(availableCourses, availableNotes)
+        repeat(availableCourses, availableNotes)
     elif UserPick == "F":
         NotesFinder(availableNotes)
-        repeat(availableNotes)
+        repeat(availableCourses, availableNotes)
 
 
 def main():
@@ -189,7 +192,8 @@ def main():
     # Check Credentials
     UserIdentification()
     availableNotes = PreExistingNotes()
+    availableCourses = [key for key in availableNotes.keys()]
     # Asks the user if it wants to upload or find notes
-    repeat(availableNotes)
+    repeat(availableCourses, availableNotes)
 
 main()
