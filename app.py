@@ -104,32 +104,32 @@ def NotesUploader(availableCourses, availableNotes):
 
     subject = input("¿What subject are your notes from?:")
     subject.upper().strip()
-    Titleofthenotes = input("¿What is the title of your notes?:")
-    Linkofthenotes = input("Upload here the link of your notes:")
+    NotesTitle = input("¿What is the title of your notes?:")
+    NotesLink = input("Upload here the link of your notes:")
 
     if subject not in availableCourses:
         print("Sorry, the course you entered is not included in Noted. Please try again.")
         time.sleep(1)
         subject = input("¿What subject are your notes from?:")
-        Titleofthenotes = input("¿What is the title of your notes?:")
-        Linkofthenotes = input("Upload here the link of your notes:")
+        NotesTitle = input("¿What is the title of your notes?:")
+        NotesLink = input("Upload here the link of your notes:")
     if subject=="Mathematics" or "mathematics":
-        availableNotes[subject] += [[Titleofthenotes,Linkofthenotes]]
+        availableNotes[subject] += [[NotesTitle,NotesLink]]
         print(availableNotes)
     elif subject =="Marketing Management" or "marketing management":
-        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
+        availableNotes[subject] += [NotesTitle, NotesLink]
         print(availableNotes)
     elif subject =="Probability and Statistics" or "probability and statistics":
-        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
+        availableNotes[subject] += [NotesTitle, NotesLink]
         print(availableNotes)
     elif subject == "Algorithms and Data Structures" or "algorithms and data structures":
-        availableCourses[subject] += [Titleofthenotes, Linkofthenotes]
+        availableCourses[subject] += [NotesTitle, NotesLink]
         print(availableNotes)
     elif subject=="Programming" or "programming":
-        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
+        availableNotes[subject] += [NotesTitle, NotesLink]
         print(availableNotes)
     elif subject=="Building Powerful Relationships" or "building powerful relationships":
-        availableNotes[subject] += [Titleofthenotes, Linkofthenotes]
+        availableNotes[subject] += [NotesTitle, NotesLink]
         print(availableNotes)
     else:
         print("Sorry, but you might have done a typing error")
