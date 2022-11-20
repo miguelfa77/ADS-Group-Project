@@ -102,16 +102,16 @@ def NotesUploader(availableCourses, availableNotes):
     print(availableCourses)
     print()
 
-    subject = input("¿What subject are your notes from?:")
+    subject = input("What subject are your notes from?:")
     subject.upper().strip()
-    NotesTitle = input("¿What is the title of your notes?:")
+    NotesTitle = input("What is the title of your notes?:")
     NotesLink = input("Upload here the link of your notes:")
 
     if subject not in availableCourses:
         print("Sorry, the course you entered is not included in Noted. Please try again.")
         time.sleep(1)
-        subject = input("¿What subject are your notes from?:")
-        NotesTitle = input("¿What is the title of your notes?:")
+        subject = input("What subject are your notes from?:")
+        NotesTitle = input("What is the title of your notes?:")
         NotesLink = input("Upload here the link of your notes:")
     if subject=="Mathematics" or "mathematics":
         availableNotes[subject] += [[NotesTitle,NotesLink]]
@@ -133,6 +133,7 @@ def NotesUploader(availableCourses, availableNotes):
         print(availableNotes)
     else:
         print("Sorry, but you might have done a typing error")
+
 
 # PreExistingNotes stores default notes
 def PreExistingNotes():
