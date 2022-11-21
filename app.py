@@ -1,4 +1,4 @@
-import pandas
+import pandas as pd
 import time
 import hashlib
 import re
