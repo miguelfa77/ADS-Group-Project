@@ -1,4 +1,4 @@
-# Noted Description
+# Project - Noted
 
 Noted - The class notes marketplace for all courses in BBADBA Year 2.
 
