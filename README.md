@@ -12,7 +12,7 @@ Noted Platform Description:
 In order to use Noted, make sure you have the following installed:
     
    - Python version no older than 3.6
-   - The libraries: pandas, time, hashlib, re, sys
+   - Libraries: pandas, time, hashlib, re, sys
     
 
 
