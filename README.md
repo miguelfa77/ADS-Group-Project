@@ -54,12 +54,14 @@ Finding Notes:
 # Information About the Code
 In order to run our program, we have used the following data structures:
 
-1. Hash Tables - Has been used in order to store the association between courses (value) and their given notes (its key).
+1. Hash Tables --> Has been used in order to store the association between courses (value) and their given notes (its key).
+2. Python list --> Used to create AvailableCourses, for the users to choose from
  
  
 And the following algorithms:
 1. Insertion
 2. Searching
+3. Recursion
 
 Structure:
 
