@@ -24,6 +24,12 @@ In order to run our program, we have used the following data structures:
 
 1. Hash Tables - Has been used in order to store the association between courses (value) and their given notes (its key).
  
+ 
+And the following algorithms:
+1. Insertion
+2. Deletion
+3. Searching
+
 
 
 
