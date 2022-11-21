@@ -117,6 +117,7 @@ def NotesUploader(availableCourses, availableNotes):
     subject = input("What subject are your notes from?:")
     subject.upper().strip()
     NotesTitle = input("What is the title of your notes?:")
+    NotesChapter = input("What Chapter are your notes from?: write <Chapter> and the number:")
     NotesLink = input("Upload here the link of your notes:")
 
     if subject not in availableCourses:
