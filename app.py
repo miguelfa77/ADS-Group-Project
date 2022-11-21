@@ -25,7 +25,7 @@ def UserIdentification():
 
 # Sign Up Process (Encryption)
 def SignUp(emailValidity):
-    # input email, password, confirmationPassword
+    # input email (loop until emailValidity is True), password, confirmationPassword
     while emailValidity is not True:
         email = input("Enter email address (Use IE address): ")
         emailValidity = EmailVerification(email, emailValidity)
@@ -49,7 +49,7 @@ def SignUp(emailValidity):
 
 # Login Process
 def LogIn():
-    # prompt for email/password, encode() from byt to str and unhash into authenUnhash
+    # prompt for email/password, encode() from str to byt and hash into authenUnhash
     email = input("Enter email: ")
     password = input("Enter password: ")
     encodedPswrd = password.encode()
@@ -58,7 +58,7 @@ def LogIn():
     with open("NotedCredentials.txt", "r") as f:
         storedEmail, storedPassword = f.read().split("\n")
         f.close()
-        # if input email is same as stored and unhash is same as storedPassword, login.
+        # if input email is same as stored and hash is same as storedPassword, login.
         if email == storedEmail and HashedPswrd == storedPassword:
             print("Logged in to Noted Successfully!")
             time.sleep(3)
@@ -69,14 +69,16 @@ def LogIn():
 
 
 def EmailVerification(email, emailValidity):
+    #regex is accepted email format
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     ie = "ie"
-    # while email is not valid a
+    # if email is valid (also IE email) change emailValidity to True and return
     if re.fullmatch(regex, email):
         if ie in email:
             emailValidity = True
             print("Email Valid!\n")
             return emailValidity
+    #if not from ie or not valid emailValidity remains as False
         else:
             print("Email address valid but not from IE. Use IE address in order to sign up!\n")
             return emailValidity
@@ -89,20 +91,23 @@ def EmailVerification(email, emailValidity):
 def NotesFinder(availableNotes):
     print("\nHere are the available courses: \n")
     # Creates availableCourses list
-    availableCourses = [key for key in availableNotes.keys()]
     # append the keys to the availableCourses list
+    availableCourses = [key for key in availableNotes.keys()]
     print(availableCourses)
     print()
 
     # User inputs chosenCourse.
     chosenCourse = input("Choose a course from the list: ")
     chosenCourse.title().strip()
+    #if chosenCourse is not empty and is in availableCourses get availableNotes values and store as notes.
+    #puts notes(title, chapter and link) into data frame(df) and print
     while chosenCourse != "":
         if chosenCourse in availableCourses:
             notes = availableNotes.get(chosenCourse)
             df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
             print(df)
             break
+    #else loop prompt
     else:
         print("Sorry, course not available in our database. \nTry again!")
         time.sleep(0.5)
@@ -115,18 +120,21 @@ def NotesUploader(availableCourses, availableNotes):
     print(availableCourses)
     print()
 
+    #prompt for subject, NotesTitle, NotesChapter, NotesLink
     subject = input("What subject are your notes from?:")
     NotesTitle = input("What is the title of your notes?:")
     NotesChapter = input("What Chapter are your notes from?: write <Chapter> and the number:")
     NotesLink = input("Upload here the link of your notes:")
 
+    #if input subjects is not a 2nd year 1st semester BBADBA course, reprompt
     if subject not in availableCourses:
-        print("Sorry, the course you entered is not included in Noted. Please try again (capitilze the first letter of each word).")
+        print("Sorry, the course you entered is not included in Noted. Please try again (capitalize the first letter of each word).")
         time.sleep(1)
         subject = input("What subject are your notes from?:")
         NotesTitle = input("What is the title of your notes?:")
         NotesChapter = input("What Chapter are your notes from?: write <Chapter> and the number:")
         NotesLink = input("Upload here the link of your notes:")
+    #if inputed subject is in database, add to availableNotes (database) and print in table format as data frame
     if subject == "Mathematics":
         availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
         notes = availableNotes.get(subject)
@@ -167,7 +175,7 @@ def NotesUploader(availableCourses, availableNotes):
 
 # PreExistingNotes stores default notes
 def PreExistingNotes():
-    # creates availableNotes course: NotesTitle,NotesLink
+    # creates availableNotes course: NotesTitle, NotesChapter, NotesLink
     availableNotes = {}
 
     availableNotes["Mathematics"] = [["Systems", "Chapter 1",
@@ -221,11 +229,12 @@ def PreExistingNotes():
 
     return availableNotes
 
-
+#repeat prompts for U(Upload), F(Find) or Q(Quit) as UserPick and caps it.
 def repeat(availableCourses, availableNotes):
     UserPick = input("\nEnter U to upload notes \nF to find notes \nQ to Quit \nChoose an option:")
     UserPick.upper().strip()
 
+    #if Q or types nothing, quit. 
     while UserPick != "U" and UserPick != "F":
         if UserPick == "Q" or UserPick == "":
             print("Exiting Program...")
@@ -235,6 +244,7 @@ def repeat(availableCourses, availableNotes):
             print("Wrong Letter. Restarting Program.\nLoading...")
             time.sleep(5)
 
+    #if U run NotesUploader, if F run NotesFinder. Prompts again after Upload or Find.
     if UserPick == "U":
         NotesUploader(availableCourses, availableNotes)
         repeat(availableCourses, availableNotes)
@@ -244,15 +254,17 @@ def repeat(availableCourses, availableNotes):
 
 
 def main():
+    #Welcomes user
     print("Welcome to Noted - The marketplace for your notes at IE University, BBADBA, Year 2.")
     time.sleep(1)
     print("Please sign up/log in (For your security passwords will be encrypted)")
     time.sleep(1)
     # Check Credentials
     UserIdentification()
+    #PreExistingNotes returns availableNotes
     availableNotes = PreExistingNotes()
     availableCourses = [key for key in availableNotes.keys()]
-    # Asks the user if it wants to upload or find notes
+    # Runs the prompt for user choice
     repeat(availableCourses, availableNotes)
 
 
