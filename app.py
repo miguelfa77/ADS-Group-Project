@@ -98,10 +98,10 @@ def NotesFinder(availableNotes):
     chosenCourse.title().strip()
     while chosenCourse != "":
          if chosenCourse in availableCourses:
-                 Notes = availableNotes.get(chosenCourse)
-                 print()
-                 print(Notes)
-                 break
+                 notes = availableNotes.get(chosenCourse)
+                df = pd.DataFrame(notes, columns=["Title","Chapter","Link"])
+                print(df)
+                break
          else:
              print("Sorry, course not available in our database. \nTry again!")
              time.sleep(0.5)
@@ -120,38 +120,38 @@ def NotesUploader(availableCourses, availableNotes):
     NotesLink = input("Upload here the link of your notes:")
 
     if subject not in availableCourses:
-        print("Sorry, the course you entered is not included in Noted. Please try again.")
+        print("Sorry, the course you entered is not included in Noted. Please try again (capitilze the first letter of each word).")
         time.sleep(1)
         subject = input("What subject are your notes from?:")
         NotesTitle = input("What is the title of your notes?:")
+        NotesChapter = input("What Chapter are your notes from?: write <Chapter> and the number:")
         NotesLink = input("Upload here the link of your notes:")
     if subject=="Mathematics" or "mathematics":
-        availableNotes[subject] += [[NotesTitle,NotesLink]]
+        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
         print(availableNotes)
     elif subject =="Marketing Management" or "marketing management":
-        availableNotes[subject] += [NotesTitle, NotesLink]
+        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
         print(availableNotes)
     elif subject =="Probability and Statistics" or "probability and statistics":
-        availableNotes[subject] += [NotesTitle, NotesLink]
+        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
         print(availableNotes)
     elif subject == "Algorithms and Data Structures" or "algorithms and data structures":
-        availableCourses[subject] += [NotesTitle, NotesLink]
+        availableCourses[subject] += [NotesTitle,NotesChapter, NotesLink]
         print(availableNotes)
     elif subject=="Programming" or "programming":
-        availableNotes[subject] += [NotesTitle, NotesLink]
+        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
         print(availableNotes)
     elif subject=="Building Powerful Relationships" or "building powerful relationships":
-        availableNotes[subject] += [NotesTitle, NotesLink]
+        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
         print(availableNotes)
-    else:
-        print("Sorry, but you might have done a typing error")
+
 
 # PreExistingNotes stores default notes
 def PreExistingNotes():
     # creates availableNotes course: NotesTitle,NotesLink
     availableNotes = {}
 
-    availableNotes["Mathematics"] = [["Systems", "Chapter 1"
+    availableNotes["Mathematics"] = [["Systems", "Chapter 1",
                                       "https://docs.google.com/document/d/12Ubhr_Qw6aduMykVtbFCFLA2O32Ea7GKoVDsgV6UxIk/edit?usp=sharing"],
                                      ["Matrices", "Chapter 2", "https://docs.google.com/document/d/15ZSeOGDLVm8Hk2SmcJpTo9UfzhBzMs6D6fF3z_rlIA0/edit"],
                                      ["Vector Spaces", "Chapter 3", "https://docs.google.com/document/d/1uWV-CGrSXkPSCxgyRNrwALwwYsq6wudeTDjH1kXQvjU/edit"]]
