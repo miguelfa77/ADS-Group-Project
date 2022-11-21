@@ -29,8 +29,13 @@ In order to run our program, we have used the following data structures:
 
 # Credits
 Jorge Rodriguez
+
 Miguel Ferrer
+
 Pablo Stoclet
+
 Alvaro De Castro
+
 Adolfo Topham
+
 Carlos Junquera
