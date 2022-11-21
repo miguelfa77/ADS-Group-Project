@@ -25,8 +25,6 @@ When a user enters our application, they will be greeted with the following mess
 
 To begin, the user will have to create an account by entering their IE email and their password (they will also have to confirm this password) by selecting option 1. After creating their Noted account, they will be asked to log in using the same email and password by selecting option 2.
 
-If they already have an account, the user can skip directly to the log in option.
-
 Now, the user will be asked to choose from the following:
 
   1. Input "U" to upload their notes
