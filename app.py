@@ -224,7 +224,7 @@ def PreExistingNotes():
 
 
 def repeat(availableCourses, availableNotes):
-    UserPick = input("\nEnter U to upload notes or F to find notes or Q to Quit:")
+    UserPick = input("\nEnter U to upload notes \nF to find notes \nQ to Quit \nChoose an option:")
     UserPick.upper().strip()
 
     while UserPick != "U" and UserPick != "F":
