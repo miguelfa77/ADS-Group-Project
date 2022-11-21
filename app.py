@@ -14,7 +14,7 @@ def UserIdentification():
         print("3.Exit")
         ch = int(input("Enter your choice: "))
         if ch == 1:
-            SignUp()
+            SignUp(emailValidity=False)
         elif ch == 2:
             LogIn()
             break
@@ -23,10 +23,11 @@ def UserIdentification():
 
 
 # Sign Up Process (Encryption)
-def SignUp():
+def SignUp(emailValidity):
     # input email, password, confirmationPassword
-    email = input("Enter email address (Use IE address): ")
-    EmailVerification(email)
+    while emailValidity is not True:
+        email = input("Enter email address (Use IE address): ")
+        emailValidity = EmailVerification(email, emailValidity)
     password = input("Enter password: ")
     confPassword = input("Confirm password: ")
     # if passwords match, encode() from str to byte acceptable for hashing
@@ -66,17 +67,21 @@ def LogIn():
             sys.exit()
 
 
-def EmailVerification(email):
+def EmailVerification(email, emailValidity):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     ie = "ie"
+    #while email is not valid a
     if re.fullmatch(regex, email):
         if ie in email:
-            print("Email Valid\n")
+            emailValidity = True
+            print("Email Valid!\n")
+            return emailValidity
         else:
-            print("Email address valid but not from IE. Use IE address next time\n")
+            print("Email address valid but not from IE. Use IE address in order to sign up!\n")
+            return emailValidity
     else:
-        print("Invalid Email\n")
-
+        print("Invalid Email.\n")
+        return emailValidity
 
 # notesFinder function (takes availableNotes as input) returns title and link
 def NotesFinder(availableNotes):
@@ -210,3 +215,5 @@ def main():
     repeat(availableCourses, availableNotes)
 
 main()
+    
+
