@@ -59,8 +59,7 @@ In order to run our program, we have used the following data structures:
  
 And the following algorithms:
 1. Insertion
-2. Deletion
-3. Searching
+2. Searching
 
 Structure:
 The program follows stack data structure. Whenever a function is invoked then the calling function is pushed into the stack and the function called is executed. Once the called function completes its execution and returns then then the calling function is popped from the stack and executed.
