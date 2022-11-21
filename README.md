@@ -35,7 +35,7 @@ Now, the user will be asked to choose from the following:
   2. Input "F" to find other people's notes
   3. Input "Q" to quit the program
   
-  The user will be prompted with this options after every time the upload or look for notes in   our program
+  The user will be prompted with these options after every time the upload or look for notes in   our program
   
 Uploading Notes:
 
