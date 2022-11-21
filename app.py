@@ -71,7 +71,7 @@ def LogIn():
 def EmailVerification(email, emailValidity):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     ie = "ie"
-    #while email is not valid a
+    # while email is not valid a
     if re.fullmatch(regex, email):
         if ie in email:
             emailValidity = True
@@ -83,6 +83,7 @@ def EmailVerification(email, emailValidity):
     else:
         print("Invalid Email.\n")
         return emailValidity
+
 
 # notesFinder function (takes availableNotes as input) returns title and link
 def NotesFinder(availableNotes):
@@ -97,15 +98,15 @@ def NotesFinder(availableNotes):
     chosenCourse = input("Choose a course from the list: ")
     chosenCourse.title().strip()
     while chosenCourse != "":
-         if chosenCourse in availableCourses:
-                 notes = availableNotes.get(chosenCourse)
-                df = pd.DataFrame(notes, columns=["Title","Chapter","Link"])
-                print(df)
-                break
-         else:
-             print("Sorry, course not available in our database. \nTry again!")
-             time.sleep(0.5)
-             chosenCourse = input("Choose your course: ").title().strip()
+        if chosenCourse in availableCourses:
+            notes = availableNotes.get(chosenCourse)
+            df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
+            print(df)
+            break
+    else:
+        print("Sorry, course not available in our database. \nTry again!")
+        time.sleep(0.5)
+        chosenCourse = input("Choose your course: ").title().strip()
 
 
 # notesUploader function to upload notes link.
@@ -115,36 +116,54 @@ def NotesUploader(availableCourses, availableNotes):
     print()
 
     subject = input("What subject are your notes from?:")
-    subject.upper().strip()
     NotesTitle = input("What is the title of your notes?:")
     NotesChapter = input("What Chapter are your notes from?: write <Chapter> and the number:")
     NotesLink = input("Upload here the link of your notes:")
 
     if subject not in availableCourses:
-        print("Sorry, the course you entered is not included in Noted. Please try again (capitilze the first letter of each word).")
+        print(
+            "Sorry, the course you entered is not included in Noted. Please try again (capitilze the first letter of each word).")
         time.sleep(1)
         subject = input("What subject are your notes from?:")
         NotesTitle = input("What is the title of your notes?:")
         NotesChapter = input("What Chapter are your notes from?: write <Chapter> and the number:")
         NotesLink = input("Upload here the link of your notes:")
-    if subject=="Mathematics" or "mathematics":
-        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
-        print(availableNotes)
-    elif subject =="Marketing Management" or "marketing management":
-        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
-        print(availableNotes)
-    elif subject =="Probability and Statistics" or "probability and statistics":
-        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
-        print(availableNotes)
-    elif subject == "Algorithms and Data Structures" or "algorithms and data structures":
-        availableCourses[subject] += [NotesTitle,NotesChapter, NotesLink]
-        print(availableNotes)
-    elif subject=="Programming" or "programming":
-        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
-        print(availableNotes)
-    elif subject=="Building Powerful Relationships" or "building powerful relationships":
-        availableNotes[subject] += [NotesTitle,NotesChapter, NotesLink]
-        print(availableNotes)
+    if subject == "Mathematics":
+        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
+        notes = availableNotes.get(subject)
+        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
+        print(df)
+    elif subject == "Marketing Management":
+        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
+        notes = availableNotes.get(subject)
+        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
+        print(df)
+    elif subject == "Probability and Statistics":
+        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
+        notes = availableNotes.get(subject)
+        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
+        print(df)
+    elif subject == "Algorithms and Data Structures":
+        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
+        notes = availableNotes.get(subject)
+        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
+        print(df)
+    elif subject == "Programming":
+        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
+        notes = availableNotes.get(subject)
+        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
+        print(df)
+    elif subject == "Building Powerful Relationships":
+        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
+        notes = availableNotes.get(subject)
+        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
+        print(df)
+    elif subject == "Entrepreneurship & Innovation":
+        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
+        notes = availableNotes.get(subject)
+        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
+        print(df)
+
 
 
 # PreExistingNotes stores default notes
@@ -154,34 +173,55 @@ def PreExistingNotes():
 
     availableNotes["Mathematics"] = [["Systems", "Chapter 1",
                                       "https://docs.google.com/document/d/12Ubhr_Qw6aduMykVtbFCFLA2O32Ea7GKoVDsgV6UxIk/edit?usp=sharing"],
-                                     ["Matrices", "Chapter 2", "https://docs.google.com/document/d/15ZSeOGDLVm8Hk2SmcJpTo9UfzhBzMs6D6fF3z_rlIA0/edit"],
-                                     ["Vector Spaces", "Chapter 3", "https://docs.google.com/document/d/1uWV-CGrSXkPSCxgyRNrwALwwYsq6wudeTDjH1kXQvjU/edit"]]
+                                     ["Matrices", "Chapter 2",
+                                      "https://docs.google.com/document/d/15ZSeOGDLVm8Hk2SmcJpTo9UfzhBzMs6D6fF3z_rlIA0/edit"],
+                                     ["Vector Spaces", "Chapter 3",
+                                      "https://docs.google.com/document/d/1uWV-CGrSXkPSCxgyRNrwALwwYsq6wudeTDjH1kXQvjU/edit"]]
 
-    availableNotes["Marketing Management"] = [["Products and Services", "Chapter 1", "https://docs.google.com/document/d/1Qc6WegomqqfSwYfXYDbm1vW49R9NZhdDYhlZo3YupHs/edit?usp=sharing"],
-                                              ["New Product Development", "Chapter 2", "https://docs.google.com/document/d/1WQLcSCfxibARMOn_3pAqXLERRtgFY5SZB99c4AinynQ/edit?usp=sharing"],
-                                              ["Branding", "Chapter 3", "https://docs.google.com/document/d/1o8B3k4wHHSkmPj2US5JwdTDx8ojvxKwl_zjBNkmmUJs/edit?usp=sharing"]]
+    availableNotes["Marketing Management"] = [["Products and Services", "Chapter 1",
+                                               "https://docs.google.com/document/d/1Qc6WegomqqfSwYfXYDbm1vW49R9NZhdDYhlZo3YupHs/edit?usp=sharing"],
+                                              ["New Product Development", "Chapter 2",
+                                               "https://docs.google.com/document/d/1WQLcSCfxibARMOn_3pAqXLERRtgFY5SZB99c4AinynQ/edit?usp=sharing"],
+                                              ["Branding", "Chapter 3",
+                                               "https://docs.google.com/document/d/1o8B3k4wHHSkmPj2US5JwdTDx8ojvxKwl_zjBNkmmUJs/edit?usp=sharing"]]
 
-    availableNotes["Probability and Statistics"] = [["Intro to Multivariate Statistical Analysis", "Chapter 1", "https://docs.google.com/document/d/1ZQhx4tAdSH6MXkJpAv7kF8MUgdlUtigxdZISMj26h7U/edit?usp=sharing"],
-                                                    ["Data Assessment & Evaluation", "Chapter 2", "https://docs.google.com/document/d/1D7Qwv-V5_IxhNbUMacHrRFVt9YK0R1MvIxnSdKmKbNE/edit?usp=sharing"],
-                                                    ["Principal Component Analysis & Cluster Analysis", "Chapter 3", "https://docs.google.com/document/d/1vmcHfTepUkzRaSMc2XJyiX2F9BAL7bfMy4Ie2wHFLS0/edit?usp=sharing"]]
+    availableNotes["Probability and Statistics"] = [["Intro to Multivariate Statistical Analysis", "Chapter 1",
+                                                     "https://docs.google.com/document/d/1ZQhx4tAdSH6MXkJpAv7kF8MUgdlUtigxdZISMj26h7U/edit?usp=sharing"],
+                                                    ["Data Assessment & Evaluation", "Chapter 2",
+                                                     "https://docs.google.com/document/d/1D7Qwv-V5_IxhNbUMacHrRFVt9YK0R1MvIxnSdKmKbNE/edit?usp=sharing"],
+                                                    ["Principal Component Analysis & Cluster Analysis", "Chapter 3",
+                                                     "https://docs.google.com/document/d/1vmcHfTepUkzRaSMc2XJyiX2F9BAL7bfMy4Ie2wHFLS0/edit?usp=sharing"]]
 
-    availableNotes["Algorithms and Data Structures"] = [["Search Algorithms and Runtime", "Chapter 1", "https://docs.google.com/document/d/1FOHSX94IUOzNZOTHKXbh1_UWNOPGggIpDuHl-mk2n2c/edit?usp=sharing"],
-                                                        ["Arrays, Linked Lists, Selection Sort", "Chapter 2", "https://docs.google.com/document/d/1CjwUiTdTwAkIRgWVChepRSpYsn6vZs0OQD7UhVDRWqw/edit?usp=sharing"],
-                                                        ["Recursion", "Chapter 3", "https://docs.google.com/document/d/1Q_mljP1nIlDqOiOsI705-APOTynLBEfuHBb4OiQJkEk/edit?usp=sharing"]]
+    availableNotes["Algorithms and Data Structures"] = [["Search Algorithms and Runtime", "Chapter 1",
+                                                         "https://docs.google.com/document/d/1FOHSX94IUOzNZOTHKXbh1_UWNOPGggIpDuHl-mk2n2c/edit?usp=sharing"],
+                                                        ["Arrays, Linked Lists, Selection Sort", "Chapter 2",
+                                                         "https://docs.google.com/document/d/1CjwUiTdTwAkIRgWVChepRSpYsn6vZs0OQD7UhVDRWqw/edit?usp=sharing"],
+                                                        ["Recursion", "Chapter 3",
+                                                         "https://docs.google.com/document/d/1Q_mljP1nIlDqOiOsI705-APOTynLBEfuHBb4OiQJkEk/edit?usp=sharing"]]
 
-    availableNotes["Programming"] = [["Graphical User Interfaces", "Chapter 1", "https://docs.google.com/document/d/1yor2mDXPRguValGf0yzSPeXm8S-rFfyBWn-Qv90plII/edit?usp=sharing"],
-                                     ["Definite Loops and Math Library", "Chapter 2", "https://docs.google.com/document/d/1YE9or8ywDPmi4lb8I7nNGCt8LDLZFgg7nx3iRhBK2Tk/edit?usp=sharing"],
-                                     ["Visualiaing Data with Pandas", "Chapter 3", "https://docs.google.com/document/d/1fe86PO-CoqiWopSMlFVX1o1dK_6Uv5JXCXIPH5CAY0o/edit?usp=sharing"]]
+    availableNotes["Programming"] = [["Graphical User Interfaces", "Chapter 1",
+                                      "https://docs.google.com/document/d/1yor2mDXPRguValGf0yzSPeXm8S-rFfyBWn-Qv90plII/edit?usp=sharing"],
+                                     ["Definite Loops and Math Library", "Chapter 2",
+                                      "https://docs.google.com/document/d/1YE9or8ywDPmi4lb8I7nNGCt8LDLZFgg7nx3iRhBK2Tk/edit?usp=sharing"],
+                                     ["Visualiaing Data with Pandas", "Chapter 3",
+                                      "https://docs.google.com/document/d/1fe86PO-CoqiWopSMlFVX1o1dK_6Uv5JXCXIPH5CAY0o/edit?usp=sharing"]]
 
-    availableNotes["Building Powerful Relationships"] = [["7 Basic Communication Skills", "Chapter 1", "7 basic communication skills.docx"],
-                                                         ["Pathos, Ethos and Logos","Chapter 2", "https://www.ted.com/talks/danish_dhamani_how_i_overcame_my_fear_of_public_speaking"],
-                                                         ["How to do your own Ted Talk", "Chapter 3", "https://www.wix.com/wordsmatter/blog/2020/12/ethos-pathos-logos/"]]
+    availableNotes["Building Powerful Relationships"] = [
+        ["7 Basic Communication Skills", "Chapter 1", "7 basic communication skills.docx"],
+        ["Pathos, Ethos and Logos", "Chapter 2",
+         "https://www.ted.com/talks/danish_dhamani_how_i_overcame_my_fear_of_public_speaking"],
+        ["How to do your own Ted Talk", "Chapter 3",
+         "https://www.wix.com/wordsmatter/blog/2020/12/ethos-pathos-logos/"]]
 
-    availableNotes["Entrepeneurship & Innovation"] = [["Dynamics", "Chapter 1", "https://docs.google.com/document/d/1sCO9ZETyAv7-KcTT1FH4RJ-4MKLuRaIfRCR4LHCgVT4/edit?usp=sharing"],
-                                                         ["Entrepeneurial Mindset","Chapter 2", "https://docs.google.com/document/d/1qmJthzBIkogUv96gADBsKkCM-RXG7xDT2C3oi3-qb3Y/edit?usp=sharing"],
-                                                         ["How Do Ideas Emerge", "Chapter 3", "https://docs.google.com/document/d/1rkHMd6d56zUfmg7qer3G2Tq2G--uN7213GwArAJwt7U/edit?usp=sharing"]]
-    
+    availableNotes["Entrepreneurship & Innovation"] = [["Dynamics", "Chapter 1",
+                                                       "https://docs.google.com/document/d/1sCO9ZETyAv7-KcTT1FH4RJ-4MKLuRaIfRCR4LHCgVT4/edit?usp=sharing"],
+                                                      ["Entrepeneurial Mindset", "Chapter 2",
+                                                       "https://docs.google.com/document/d/1qmJthzBIkogUv96gADBsKkCM-RXG7xDT2C3oi3-qb3Y/edit?usp=sharing"],
+                                                      ["How Do Ideas Emerge", "Chapter 3",
+                                                       "https://docs.google.com/document/d/1rkHMd6d56zUfmg7qer3G2Tq2G--uN7213GwArAJwt7U/edit?usp=sharing"]]
+
     return availableNotes
+
 
 def repeat(availableCourses, availableNotes):
     UserPick = input("\nEnter U to upload notes or F to find notes or Q to Quit:")
@@ -215,6 +255,7 @@ def main():
     availableCourses = [key for key in availableNotes.keys()]
     # Asks the user if it wants to upload or find notes
     repeat(availableCourses, availableNotes)
+
 
 main()
     
