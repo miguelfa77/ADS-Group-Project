@@ -31,6 +31,7 @@ And the following algorithms:
 3. Searching
 
 Structure:
+
 The program follows stack data structure. Whenever a function is invoked then the calling function is pushed into the stack and the function called is executed. Once the called function completes its execution and returns then then the calling function is popped from the stack and executed.
 
 
