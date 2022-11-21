@@ -61,7 +61,7 @@ In order to run our program, we have used the following data structures:
  
  
 And the following algorithms:
-1. Hashing (used hashlib to encrypt passwords)
+1. Hashing --> Encrypting strings by transforming them into bytes and applying a hash function. (used hashlib library to hash passwords)
 2. Insertion
 3. Searching
 4. Recursion
