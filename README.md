@@ -29,8 +29,6 @@ Login System:
   3. Email Verifiation verifies the email to prove that it is valid (must be in email format and be an IE email).
   4. Login function prompts for email and password. It hashes the password and checks if it matches with the stored email and password.
 
-If they already have an account, the user can skip directly to the log in option.
-
 Now, the user will be asked to choose from the following:
 
   1. Input "U" to upload their notes
