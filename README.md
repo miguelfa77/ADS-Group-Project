@@ -23,7 +23,11 @@ When a user enters our application, they will be greeted with the following mess
   1. Welcome to Noted - The marketplace for your notes at IE University, BBADBA, Year 2
   2. Please sign up/log in (For your security passwords will be encrypted)
 
-To begin, the user will have to create an account by entering their IE email and their password (they will also have to confirm this password) by selecting option 1. After creating their Noted account, they will be asked to log in using the same email and password by selecting option 2.
+Login System:
+  1. User Identification function prompts user to choose between sign-up(1), login(2) or quit(3).
+  2. Sign up function prompts for email, password, confirmation password. It hashes the password and stores it in a file called NotedCredentials.txt along      with the email. It loops until email is proved to be valid.
+  3. Email Verifiation verifies the email to prove that it is valid (must be in email format and be an IE email).
+  4. Login function prompts for email and password. It hashes the password and checks if it matches with the stored email and password.
 
 If they already have an account, the user can skip directly to the log in option.
 
