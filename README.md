@@ -21,7 +21,8 @@ In order to use Noted, make sure you have the following installed:
 
 # Information About the Code
 In order to run our program, we have used the following data structures:
-"\n"1.Hash Tables - Has been used in order to store all the academic courses and their given notes.
+
+1.Hash Tables - Has been used in order to store all the academic courses and their given notes.
 
 
 
