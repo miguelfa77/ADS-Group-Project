@@ -121,8 +121,7 @@ def NotesUploader(availableCourses, availableNotes):
     NotesLink = input("Upload here the link of your notes:")
 
     if subject not in availableCourses:
-        print(
-            "Sorry, the course you entered is not included in Noted. Please try again (capitilze the first letter of each word).")
+        print("Sorry, the course you entered is not included in Noted. Please try again (capitilze the first letter of each word).")
         time.sleep(1)
         subject = input("What subject are your notes from?:")
         NotesTitle = input("What is the title of your notes?:")
