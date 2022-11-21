@@ -206,7 +206,7 @@ def PreExistingNotes():
                                       "https://docs.google.com/document/d/1fe86PO-CoqiWopSMlFVX1o1dK_6Uv5JXCXIPH5CAY0o/edit?usp=sharing"]]
 
     availableNotes["Building Powerful Relationships"] = [
-        ["7 Basic Communication Skills", "Chapter 1", "7 basic communication skills.docx"],
+        ["7 Basic Communication Skills", "Chapter 1", "https://docs.google.com/document/d/1M1F1bGdX8bwjP8RLppvCMeMsNKzVE0HRQukOiGFr5DE/edit?usp=sharing"],
         ["Pathos, Ethos and Logos", "Chapter 2",
          "https://www.ted.com/talks/danish_dhamani_how_i_overcame_my_fear_of_public_speaking"],
         ["How to do your own Ted Talk", "Chapter 3",
