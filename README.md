@@ -59,9 +59,10 @@ In order to run our program, we have used the following data structures:
  
  
 And the following algorithms:
-1. Insertion
-2. Searching
-3. Recursion
+1. Hashing (used hashlib to encrypt passwords)
+2. Insertion
+3. Searching
+4. Recursion
 
 Structure:
 
