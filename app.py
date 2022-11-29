@@ -126,51 +126,21 @@ def NotesUploader(availableCourses, availableNotes):
     NotesChapter = input("What Chapter are your notes from?: write <Chapter> and the number:")
     NotesLink = input("Upload here the link of your notes:")
 
-    #if input subjects is not a 2nd year 1st semester BBADBA course, reprompt
-    if subject not in availableCourses:
-        print("Sorry, the course you entered is not included in Noted. Please try again (capitalize the first letter of each word).")
+    # if input subjects is not a 2nd year 1st semester BBADBA course, reprompt
+    if subject in availableNotes:
+        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
+        notes = availableNotes.get(subject)
+        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
+        print(df)
+    else:
+        print(
+            "Sorry, the course you entered is not included in Noted. Please try again (capitalize the first letter of each word).")
         time.sleep(1)
         subject = input("What subject are your notes from?:")
         NotesTitle = input("What is the title of your notes?:")
         NotesChapter = input("What Chapter are your notes from?: write <Chapter> and the number:")
         NotesLink = input("Upload here the link of your notes:")
-    #if inputed subject is in database, add to availableNotes (database) and print in table format as data frame
-    if subject == "Mathematics":
-        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
-        notes = availableNotes.get(subject)
-        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
-        print(df)
-    elif subject == "Marketing Management":
-        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
-        notes = availableNotes.get(subject)
-        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
-        print(df)
-    elif subject == "Probability and Statistics":
-        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
-        notes = availableNotes.get(subject)
-        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
-        print(df)
-    elif subject == "Algorithms and Data Structures":
-        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
-        notes = availableNotes.get(subject)
-        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
-        print(df)
-    elif subject == "Programming":
-        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
-        notes = availableNotes.get(subject)
-        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
-        print(df)
-    elif subject == "Building Powerful Relationships":
-        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
-        notes = availableNotes.get(subject)
-        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
-        print(df)
-    elif subject == "Entrepreneurship & Innovation":
-        availableNotes[subject] += [[NotesTitle, NotesChapter, NotesLink]]
-        notes = availableNotes.get(subject)
-        df = pd.DataFrame(notes, columns=["Title", "Chapter", "Link"])
-        print(df)
-
+     # if inputed subject is in database, add to availableNotes (database) and print in table format as data frame
 
 
 # PreExistingNotes stores default notes
