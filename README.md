@@ -56,7 +56,7 @@ Finding Notes:
 # Information About the Code
 In order to run our program, we have used the following data structures:
 
-1. Hash Tables --> Has been used in order to store the association between courses (value) and their given notes (its key).
+1. Hash Tables --> Has been used in order to store the association between courses (key) and their given notes (value).
 2. Python list --> Used to create AvailableCourses, for the users to choose from
  
  
@@ -64,8 +64,7 @@ And the following algorithms:
 1. Hashing --> Encrypting strings by transforming them into bytes and applying a hash function. (used hashlib library to hash passwords)
 2. Insertion
 3. Searching
-4. Recursion
-5. Backtracking -->Eliminating solutions that fail to meet the criteria (password and email verification)
+4. Backtracking -->Eliminating solutions that fail to meet the criteria (password and email verification)
 
 Structure:
 
